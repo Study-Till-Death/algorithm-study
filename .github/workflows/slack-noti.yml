@@ -10,7 +10,6 @@ on:
 
 permissions:
   pull-requests: write
-  org: read
 
 jobs:
   random-reviwer:
@@ -22,7 +21,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const me = '${{ github.event.pull_request.user.login }}';
-             const response = await github.rest.orgs.listMembers({
+            const response = await github.rest.orgs.listMembers({
               org: context.repo.owner,  // 조직 이름
             });
             
