@@ -25,7 +25,7 @@ jobs:
               org: context.repo.owner,  // 조직 이름
             });
             
-            console.log(collaborators);
+            console.log(members);
             
             const candidate = ['unie11'];
             const candidateWithoutMe = candidate.filter(id => id !== me);
@@ -40,7 +40,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number,
-              reviewers: collaborators
+              reviewers: members
             });
 
       - name: Slack Notification
