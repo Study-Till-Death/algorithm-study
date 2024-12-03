@@ -57,7 +57,7 @@ jobs:
               reviewers: electedReviewers
             });
 
-      - name: Slack Notification
+      - name: Create Pull Request Comment
         uses: actions/github-script@v7.0.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
