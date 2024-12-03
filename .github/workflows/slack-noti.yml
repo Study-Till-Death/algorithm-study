@@ -65,10 +65,10 @@ jobs:
           script: |
             const comment = "${{ steps.random_reviewer.outputs.comment }}";
             // Create comment 
-            await github.rest.pulls.createReviewComment({
+            await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: context.payload.pull_request.number,
+              issue_number: context.payload.pull_request.number,
               body : comment
             });
 
