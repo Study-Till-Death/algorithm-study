@@ -27,26 +27,40 @@ jobs:
             
             console.log(response.data);
             
-            const candidate = ['unie11'];
+            const candidate = response.data.map(member => member.login);
             const candidateWithoutMe = candidate.filter(id => id !== me);
-            const randomReviewer = candidateWithoutMe[Math.floor(Math.random() * candidateWithoutMe.length)];
+            
+            function getRandomTwo(array) {
+              if (array.length < 2) {
+              throw new Error("Array must have at least two elements.");
+            }
+            
+              const index1 = Math.floor(Math.random() * array.length);
+              let index2;
+            
+              // 첫 번째 인덱스와 다른 값을 찾을 때까지 반복
+              do {
+              index2 = Math.floor(Math.random() * array.length);
+            } while (index1 === index2);
+            
+              return [array[index1], array[index2]];
+            }
+            
+            const electedReviewers = getRandomTwo(candidateWithoutMe);
 
-            const comment = `@${randomReviewer} 님 랜덤 리뷰어로 당첨되셨습니다! 리뷰를 부탁드립니다. 🙏`
-            core.setOutput('comment', comment)
-            core.setOutput('reviewer', randomReviewer)
+            core.setOutput('reviewer_1', electedReviewers[0]);
+            core.setOutput('reviewer_2', electedReviewers[1]);
             
             // Request review
             await github.rest.pulls.requestReviewers({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number,
-              reviewers: candidate
+              reviewers: electedReviewers
             });
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
@@ -54,6 +68,6 @@ jobs:
         run: |
           curl -X POST -H 'Content-type: application/json' \
           --data '{
-            "text": "🎉 축하합니다! \n\n *${{ github.event.pull_request.title }}* 의 리뷰어로 <@${{ steps.random_reviewer.outputs.reviewer }}> 님이 당선되었습니다! 🎉"
+            "text": "🎉 축하합니다! \n\n *${{ github.event.pull_request.title }}* 의 리뷰어로 \n\n<@${{ steps.random_reviewer.outputs.reviewer_1 }}> 님과 <@${{ steps.random_reviewer.outputs.reviewer_2 }}> 님이 당선되었습니다! 🎉"
           }' \
            ${{ secrets.SLACK_WEBHOOK }}
