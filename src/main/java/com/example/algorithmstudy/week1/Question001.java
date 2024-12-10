@@ -8,19 +8,18 @@ class Question001 {
         for (int i = 0; i < n; i++) {
             int location = i;
             for (int[] row : ladder) {
-                // row = 1,3 / 2,4 / 1,4
+                // row 사다리 가로
                 for (int column : row) {
-                    if(column-1 == i){
+                    if(column-1 == location){
                         location ++;
-                    }
-                    if(column == i){
+                    }else if(column == location){
                         location --;
                     }
                 }
             }
             System.out.println(location);
+            answer[location] = (char) ('A' + i);
         }
-
 
         return answer;
     }
