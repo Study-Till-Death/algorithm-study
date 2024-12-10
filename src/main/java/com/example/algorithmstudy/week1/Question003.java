@@ -27,7 +27,7 @@ class Question003 {
 
         while (seconds < 10000){
             seconds++;
-            System.out.println(x1 + " " + y1 + " " + x2 + " " + y2 + " " + seconds);
+
             switch(direction1){
                 case 'R':
                     if (y1 + 1 < board[0].length && board[x1][y1+1] != 1) {
