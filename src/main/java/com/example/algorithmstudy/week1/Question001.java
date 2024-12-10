@@ -17,7 +17,6 @@ class Question001 {
                     }
                 }
             }
-            System.out.println(location);
             answer[location] = (char) ('A' + i);
         }
 
