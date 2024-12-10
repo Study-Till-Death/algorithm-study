@@ -4,6 +4,24 @@ class Question001 {
     public char[] solution(int n, int[][] ladder){
         char[] answer = new char[n];
 
+        // 1부터 순서대로 지정 실제 위치 지정
+        for (int i = 0; i < n; i++) {
+            int location = i;
+            for (int[] row : ladder) {
+                // row = 1,3 / 2,4 / 1,4
+                for (int column : row) {
+                    if(column-1 == i){
+                        location ++;
+                    }
+                    if(column == i){
+                        location --;
+                    }
+                }
+            }
+            System.out.println(location);
+        }
+
+
         return answer;
     }
 
