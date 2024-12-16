@@ -1,6 +1,6 @@
 package com.example.algorithmstudy.week1;
 
-class Question003 {
+class MyAnswer003 {
     public int solution(int[][] board){
         int answer = 0;
 
@@ -99,7 +99,7 @@ class Question003 {
     }
 
     public static void main(String[] args){
-        Question003 T = new Question003();
+        MyAnswer003 T = new MyAnswer003();
         int[][] arr1 = {{0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
                 {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
                 {0, 0, 0, 1, 0, 0, 0, 1, 0, 0},
