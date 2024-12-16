@@ -1,6 +1,6 @@
 package com.example.algorithmstudy.week1;
 import java.util.*;
-class Question001 {
+class MyAnswer001 {
     public char[] solution(int n, int[][] ladder){
         char[] answer = new char[n];
 
@@ -24,7 +24,7 @@ class Question001 {
     }
 
     public static void main(String[] args){
-        Question001 T = new Question001();
+        MyAnswer001 T = new MyAnswer001();
         System.out.println(Arrays.toString(T.solution(5, new int[][]{{1, 3}, {2, 4}, {1, 4}})));
         System.out.println(Arrays.toString(T.solution(7, new int[][]{{1, 3, 5}, {1, 3, 6}, {2, 4}})));
         System.out.println(Arrays.toString(T.solution(8, new int[][]{{1, 5}, {2, 4, 7}, {1, 5, 7}, {2, 5, 7}})));

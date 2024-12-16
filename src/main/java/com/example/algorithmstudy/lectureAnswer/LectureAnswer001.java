@@ -1,7 +1,7 @@
-package com.example.algorithmstudy.answer;
+package com.example.algorithmstudy.lectureAnswer;
 import java.util.*;
 
-public class Answer001 {
+public class LectureAnswer001 {
     public char[] solution(int n, int[][] ladder){
         char[] answer = new char[n];
         for(int i = 0; i < n; i++){
@@ -19,7 +19,7 @@ public class Answer001 {
     }
 
     public static void main(String[] args){
-        Answer001 T = new Answer001();
+        LectureAnswer001 T = new LectureAnswer001();
         System.out.println(Arrays.toString(T.solution(5, new int[][]{{1, 3}, {2, 4}, {1, 4}})));
         System.out.println(Arrays.toString(T.solution(7, new int[][]{{1, 3, 5}, {1, 3, 6}, {2, 4}})));
         System.out.println(Arrays.toString(T.solution(8, new int[][]{{1, 5}, {2, 4, 7}, {1, 5, 7}, {2, 5, 7}})));

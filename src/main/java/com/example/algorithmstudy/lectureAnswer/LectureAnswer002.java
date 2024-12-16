@@ -1,7 +1,7 @@
-package com.example.algorithmstudy.answer;
+package com.example.algorithmstudy.lectureAnswer;
 import java.util.*;
 
-public class Answer002 {
+public class LectureAnswer002 {
     public int[] solution(int[][] board, int k){
         int[] answer = new int[2];
         int n = board.length;
@@ -25,7 +25,7 @@ public class Answer002 {
     }
 
     public static void main(String[] args){
-        Answer002 T = new Answer002();
+        LectureAnswer002 T = new LectureAnswer002();
         int[][] arr1 = {{0, 0, 0, 0, 0},
                 {0, 1, 1, 0, 0},
                 {0, 0, 0, 0, 0},
