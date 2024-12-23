@@ -25,8 +25,8 @@ class Solution6 {
                 if (minI == minJ)
                     continue;
 
-                // 교환했을 때 최솟값이 증가 && 음수가 아닐 경우
-                if (fruit[j][minJ] > fruit[i][minI] && fruit[i][minJ] > 0 && fruit[j][minI] > 0) {
+                // 교환할 과일이 0개 보다 클 경우
+                if (fruit[i][minJ] > 0 && fruit[j][minI] > 0) {
                     // 교환하기
                     fruit[i][minI]++;
                     fruit[j][minJ]++;
