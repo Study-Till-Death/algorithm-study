@@ -26,7 +26,7 @@ public class Solution {
                     i--;
                 }
         }
-        //수정
+
         return new int[] {answer[0]+1,answer[1]+1};
     }
 
