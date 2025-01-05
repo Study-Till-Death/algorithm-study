@@ -1,4 +1,4 @@
-package com.example.algorithmstudy.simulation.Week1;
+package com.example.algorithmstudy.simulation.week1;
 
 import java.util.Arrays;
 

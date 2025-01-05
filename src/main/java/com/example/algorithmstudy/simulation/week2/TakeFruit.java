@@ -1,4 +1,4 @@
-package com.example.algorithmstudy.simulation.Week2;
+package com.example.algorithmstudy.simulation.week2;
 
 import java.util.Arrays;
 import java.util.stream.IntStream;
