@@ -2,7 +2,7 @@ package com.algorithm;
 
 import java.util.Arrays;
 
-class Solution {
+class a04_sitnumber {
     public int[] solution(int c, int r, int k) {
         int[] answer = {1, 1}; // 시작 x,y
         int[] px = {0, 1, 0, -1}; // 한 바퀴 x증감폭
@@ -31,7 +31,7 @@ class Solution {
     }
 
     public static void main(String[] args) {
-        Solution T = new Solution();
+        a04_sitnumber T = new a04_sitnumber();
         System.out.println(Arrays.toString(T.solution(6, 5, 12)));
         System.out.println(Arrays.toString(T.solution(6, 5, 20)));
         System.out.println(Arrays.toString(T.solution(6, 5, 30)));
