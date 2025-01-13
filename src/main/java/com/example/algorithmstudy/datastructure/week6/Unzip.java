@@ -1,4 +1,4 @@
-package com.example.algorithmstudy.dataStructure.week6;
+package com.example.algorithmstudy.datastructure.week6;
 
 public class Unzip {
     public String solution(String s) {
