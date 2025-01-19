@@ -34,7 +34,6 @@ class Solution17 {
 
                 // 괄호 안의 문자열 뽑기
                 String inner = solve(s.substring(start, i - 1));
-]
                 // 문자열 반복 횟수만큼 반복하여 결과 추가
                 result.append(inner.repeat(repeat));
             } else {
