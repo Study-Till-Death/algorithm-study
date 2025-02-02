@@ -3,6 +3,7 @@ package com.algorithm;
 import java.util.*;
 
 public class a21_mostUsedRooms {
+    // 답이 틀렸어요
     public int solution(int n, int[][] meetings){
         int answer = 0;
         int[][] frequency = new int[n][2]; // 1. 빈도수 2. 현인덱스 미팅룸 사용끝나는시간
@@ -17,23 +18,24 @@ public class a21_mostUsedRooms {
 
         while (true) {
             for (int i = 0; i < meetingList.size(); i++) {
-                if (meetingList.get(i)[0]<=end) {
-                    for (int j = 0; j < frequency.length; j++) {
-                        if(frequency[j][1] <= meetingList.get(i)[0]) {
+                if (meetingList.get(i)[0]<=end) { // 회의시작시간이 현재시간보다 적거나 같은 경우(대기)
+                    for (int j = 0; j < frequency.length; j++) { // 회의실을 돌면서 회의실 끝나는 시간이 새회의 시작 시간보다 작거나 같은 경우 찾음
+                        if(frequency[j][1] <= end) { // 해당 회의실의 회의 끝나는 시간이 현재 시간보다 작거나 같은 경우
                             frequency[j][0]++; // 빈도 증가
                             frequency[j][1]+=meetingList.get(i)[1];
-                            end+=meetingList.get(i)[1];
                             meetingList.remove(i);
                             break;
                         }
-
-                        if (j==frequency.length-1) end++;
                     }
+                    end++;
+                    break;
                 }
+                end++;
+                break;
             }
             if (meetingList.size()==0) {
                 int max=0;
-                for (int i = frequency.length; 0 < i ; i--) {
+                for (int i = frequency.length-1; 0 <= i ; i--) {
                     if(frequency[i][0]>max) {
                         max = frequency[i][0];
                         answer=i;
