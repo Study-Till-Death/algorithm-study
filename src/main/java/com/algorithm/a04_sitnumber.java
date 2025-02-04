@@ -24,7 +24,7 @@ class a04_sitnumber {
                 else cornerNum = c - cornerHistory / 2;
                 index = (index + 1) % 4; // 코너 돌았으므로 x,y 증감 index 갱신
                 cnt = 0; // 한 코너를 돌 때까지 이동 횟수 초기화
-            }
+            } //t
         }
 
         return answer;
