@@ -1,4 +1,4 @@
-package com.example.algorithmstudy.week8;
+package com.example.algorithmstudy.week9;
 
 class Solution27 {
     public int solution27(int[] tasks, long k) {
