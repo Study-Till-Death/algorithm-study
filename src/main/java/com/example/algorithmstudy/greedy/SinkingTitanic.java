@@ -29,6 +29,8 @@ public class SinkingTitanic {
         return answer;
     }
 
+    // 비상 정답풀이는 가벼운 사람부터 넣음 왜지
+
     public static void main(String[] args){
         SinkingTitanic T = new SinkingTitanic();
         System.out.println(T.solution(new int[]{90, 50, 70, 100, 60}, 140));
