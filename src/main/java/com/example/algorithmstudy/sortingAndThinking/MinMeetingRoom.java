@@ -1,5 +1,8 @@
 package com.example.algorithmstudy.sortingAndThinking;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MinMeetingRoom {
     public int solution(int[][] meetings){
         int answer = 0;
@@ -19,6 +22,25 @@ public class MinMeetingRoom {
         }
         return answer;
     }
+
+    // 답지풀이
+    // 전체 이벤트를 1 시작 2 종료로 구분해서 하나의 리스트에 넣고 매 이벤트마다 cnt 체크해서 최대값을 답으로 가져감
+    public int solution2(int[][] meetings){
+        List<int[]> list = new ArrayList<>();
+        for(int[] x : meetings){
+            list.add(new int[]{x[0], 1});
+            list.add(new int[]{x[1], 2});
+        }
+        list.sort((a, b) -> a[0] == b[0] ? b[1] - a[1] : a[0] - b[0]);
+        int answer = 0, cnt = 0;
+        for(int[] x : list){
+            if(x[1] == 1) cnt++;
+            else cnt--;
+            answer = Math.max(answer, cnt);
+        }
+        return answer;
+    }
+
 
     public static void main(String[] args){
         MinMeetingRoom T = new MinMeetingRoom();
