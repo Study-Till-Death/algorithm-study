@@ -1,7 +1,8 @@
 package com.example.algorithmstudy.greedy;
 
 import java.util.Arrays;
-import java.util.Comparator;
+import java.util.Collections;
+import java.util.LinkedList;
 
 public class Max {
     public int solution(int n, int[][] trans, int[][] bookings) {
@@ -26,49 +27,31 @@ public class Max {
         int now = 1;
         int bookIndex = 0; // queue 로 짤껄 단순 중복 방지용
         // 역 끝날 때까지
-        while (now <= n) {
-            // 현재 역 최고 탑승가능 인원
-            for (int i = bookIndex; i < bookings.length; i++) {
-                int[] booking = bookings[i];
-                int bookingStart = booking[0];
-                int bookingEnd = booking[1];
-                if (bookingStart != now) { // 현재 역 이후 출발이면 종료
-                    break;
-                }
-                bookIndex++; // 일단 처리할 예정이니 증가
-                boolean canBook = true;
-                for (int j = bookingStart; j <= bookingEnd; j++) {
-                    if (maxCounts[j] < 1) { // 예약 불가 체크
-                        canBook = false;
-                    }
-                }
-                if (!canBook) { // 예약 불가
-                    // 이후 booking 도 예약 불가
-                    break;
-                }
-
-                // 예약 가능한 애들은 전부 예약
-                for (int j = bookingEnd; j >= bookingStart; j--) {
-                    maxCounts[j]--;
-                }
+        LinkedList<Integer> nums = new LinkedList<>();
+        int ix = 0;
+        for(int i = 1; i <= n; i++){
+            while(!nums.isEmpty() && nums.peek() == i){
                 answer++;
+                nums.pollFirst();
             }
-            // 다음 역으로
-            now++;
+            while(ix < bookings.length && bookings[ix][0] == i){
+                nums.add(bookings[ix][1]);
+                ix++;
+            }
+            Collections.sort(nums);
+            while(nums.size() > maxCounts[i]){
+                nums.pollLast();
+            }
         }
-
-        //
-
-
         return answer;
     }
 
     public static void main(String[] args) {
         Max T = new Max();
         System.out.println(T.solution(5, new int[][]{{1, 4, 2}, {2, 5, 1}}, new int[][]{{1, 2}, {1, 5}, {2, 3}, {2, 4}, {2, 5}, {2, 5}, {3, 5}, {3, 4}}));
-//        System.out.println(T.solution(5, new int[][]{{2, 3, 1}, {1, 5, 1}}, new int[][]{{2, 5}, {1, 5}, {1, 3}, {2, 4}, {2, 5}, {2, 3}}));
-//        System.out.println(T.solution(8, new int[][]{{1, 8, 3}, {3, 8, 1}}, new int[][]{{1, 3}, {5, 8}, {2, 7}, {3, 8}, {2, 7}, {2, 8}, {3, 8}, {6, 8}, {7, 8}, {5, 8}, {2, 5}, {2, 7}, {3, 7}, {3, 8}}));
-//        System.out.println(T.solution(9, new int[][]{{1, 8, 3}, {3, 9, 2}, {1, 5, 3}}, new int[][]{{1, 9}, {5, 8}, {2, 9}, {3, 8}, {2, 9}, {1, 9}, {8, 9}, {3, 9}, {1, 8}, {6, 8}, {7, 8}, {5, 8}, {3, 5}, {3, 7}, {4, 7}, {5, 8}}));
-//        System.out.println(T.solution(9, new int[][]{{2, 7, 2}, {3, 9, 2}, {1, 5, 3}}, new int[][]{{1, 9}, {4, 8}, {2, 9}, {5, 9}, {3, 8}, {2, 9}, {1, 9}, {8, 9}, {3, 9}, {1, 8}, {6, 8}, {3, 6}, {7, 8}, {5, 8}, {3, 5}, {2, 7}, {1, 7}, {2, 8}}));
+        System.out.println(T.solution(5, new int[][]{{2, 3, 1}, {1, 5, 1}}, new int[][]{{2, 5}, {1, 5}, {1, 3}, {2, 4}, {2, 5}, {2, 3}}));
+        System.out.println(T.solution(8, new int[][]{{1, 8, 3}, {3, 8, 1}}, new int[][]{{1, 3}, {5, 8}, {2, 7}, {3, 8}, {2, 7}, {2, 8}, {3, 8}, {6, 8}, {7, 8}, {5, 8}, {2, 5}, {2, 7}, {3, 7}, {3, 8}}));
+        System.out.println(T.solution(9, new int[][]{{1, 8, 3}, {3, 9, 2}, {1, 5, 3}}, new int[][]{{1, 9}, {5, 8}, {2, 9}, {3, 8}, {2, 9}, {1, 9}, {8, 9}, {3, 9}, {1, 8}, {6, 8}, {7, 8}, {5, 8}, {3, 5}, {3, 7}, {4, 7}, {5, 8}}));
+        System.out.println(T.solution(9, new int[][]{{2, 7, 2}, {3, 9, 2}, {1, 5, 3}}, new int[][]{{1, 9}, {4, 8}, {2, 9}, {5, 9}, {3, 8}, {2, 9}, {1, 9}, {8, 9}, {3, 9}, {1, 8}, {6, 8}, {3, 6}, {7, 8}, {5, 8}, {3, 5}, {2, 7}, {1, 7}, {2, 8}}));
     }
 }
