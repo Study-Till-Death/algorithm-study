@@ -3,42 +3,81 @@ package com.example.algorithmstudy.dfs;
 public class TugOfWar {
     private boolean[][] fightArr;
     private int answer;
-    private int maxDepth;
 
-    public int solution(int[][] fight) {
-        // 역방향도 적용해야 하니
-        // 학생 7명 고정
-        int studentNumber = 7;
-        fightArr = new boolean[studentNumber + 1][studentNumber + 1];
+    private final int studentNumber = 7; // 학생 7명 고정
 
-        for (int[] ints : fight) {
-            int s1 = ints[0];
-            int s2 = ints[1];
-            fightArr[s1][s2] = true;
-            fightArr[s2][s1] = true;
-        }
-        answer = 0;
-        maxDepth = studentNumber;
-        boolean[] isUseds = new boolean[studentNumber + 1];
-
+    public int solution(int[][] fights) {
+        setFightRelations(fights);
+        resetAnswer();
+        boolean[] isUseds = resetIsUsed();
         dfs(0, isUseds,0);
-
         return answer;
     }
 
+    private void setFightRelations(int[][] fights) {
+        resetFightArray();
+        for (int[] fight : fights) {
+            int fighter1 = getFirstFighter(fight);
+            int fighter2 = getSecondFighter(fight);
+            // 역방향도 적용해야 하니
+            markFight(fighter1, fighter2);
+            markFight(fighter2, fighter1);
+        }
+    }
+
+    private void resetFightArray() {
+        fightArr = new boolean[studentNumber + 1][studentNumber + 1];
+    }
+
+    private void markFight(int fighter1, int fighter2) {
+        fightArr[fighter1][fighter2] = true;
+    }
+
+    private void resetAnswer() {
+        answer = 0;
+    }
+
+    private boolean[] resetIsUsed() {
+        return new boolean[studentNumber + 1];
+    }
+
+    private static int getSecondFighter(int[] fight) {
+        return fight[1];
+    }
+
+    private static int getFirstFighter(int[] fight) {
+        return fight[0];
+    }
+
     private void dfs(int depth, boolean[] isUsed, int lastUsedNumber) {
-        if (depth == maxDepth) {
+        if (isAllUsed(depth)) {
             answer++;
             return;
         }
-        for (int i = 1; i <= maxDepth; i++) {
-            if (isUsed[i] || fightArr[lastUsedNumber][i]) {
+        for (int i = 1; i <= studentNumber; i++) {
+            if (cannotBeNeighbor(isUsed, lastUsedNumber, i)) {
                 continue;
             }
-            isUsed[i] = true;
+            markAsUsed(isUsed, i);
             dfs(depth + 1, isUsed, i);
-            isUsed[i] = false;
+            maekAsUnused(isUsed, i);
         }
+    }
+
+    private static void maekAsUnused(boolean[] isUsed, int i) {
+        isUsed[i] = false;
+    }
+
+    private static void markAsUsed(boolean[] isUsed, int i) {
+        isUsed[i] = true;
+    }
+
+    private boolean cannotBeNeighbor(boolean[] isUsed, int lastUsedNumber, int i) {
+        return isUsed[i] || fightArr[lastUsedNumber][i];
+    }
+
+    private boolean isAllUsed(int depth) {
+        return depth == studentNumber;
     }
 
 
