@@ -14,7 +14,7 @@ public class a30_move {
                 low++;  // 가장 가벼운 거도 담음
             }
             high--; // 가장 무거운 거를 담음
-            answer++; //이동횟수추가
+            answer++; //이동횟수추가 .
         }
         return answer;
     }

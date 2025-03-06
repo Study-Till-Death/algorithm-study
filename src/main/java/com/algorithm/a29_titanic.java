@@ -14,7 +14,7 @@ public class a29_titanic {
                 low++;  // 가장 가벼운 애도 담음
             }
             high--; // 가장 무거운 애를 담음
-            answer++; //보트추가
+            answer++; //보트추가 .
         }
 
         return answer;
