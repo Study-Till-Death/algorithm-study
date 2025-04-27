@@ -6,8 +6,10 @@ import java.util.Queue;
 public class BreakWall {
     public int solution(int[][] board) {
         int answer = Integer.MAX_VALUE;
-        // 계속해서 이동 , 도착시 현재까지 부순 벽 값 입력, 단 각 위치마다 도달시 필요한 최소 파괴벽 수 넣어주고 어케하면 되지 않을까
+        // 계속해서 이동 , 도착시 현재까지 부순 벽 값 입력, 각 위치마다 도달시 필요한 최소 파괴벽 수 따로 저장해서 어케하면 되지 않을까
+
         int[][] breakCounts = new int[board.length][board[0].length];
+
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 breakCounts[i][j] = Integer.MAX_VALUE;
@@ -46,7 +48,7 @@ public class BreakWall {
         return answer;
     }
 
-    record Point (
+    private record Point (
             int x,
             int y,
             int breakCount
