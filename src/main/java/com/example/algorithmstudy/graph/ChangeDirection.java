@@ -54,9 +54,7 @@ public class ChangeDirection {
             int y,
             int changeCount
     ) {
-    }
-
-    ;
+    };
 
     public static void main(String[] args) {
         ChangeDirection T = new ChangeDirection();
